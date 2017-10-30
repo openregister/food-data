@@ -1,0 +1,142 @@
+Name,Description
+ApprovalNumber,The approval number provided to the food business operator by the Competent Authority
+TradingName,Name by which the establishment is known
+Town,Town of Establishment
+County,County of Establishment
+Country,Country of Establishment
+Activity,"Slaughterhouse (SH), Cutting Plant (CP), Cold Store (CS)"
+RSL,Red Meat Slaughterhouse
+PSL,Poultry Meat Slaughterhouse
+GHE,Game Handling Establishment
+RCP,Red Meat Cutting Plant
+PCP,Poultry Meat Cutting Plant
+MIN,Minced Meat Preparations Establishment
+PRO,Processing Plant
+MSM,Mechanically Separated Meat
+CLS,Cold Store
+WMA,Wholesale Market
+Sheep,Approved to remove spinal cord in sheep and goats over 12 months of age or with a permanent incisor erupted is specified risk material (SRM)
+BSETesting,Testing required in BSE susceptible animals
+VC,Cutting Plants approved to remove vertebral column in cattle older than 30 months
+WGP,Wild Game Cutting
+MPrep,Meat Preparations Establishment
+RTE,Ready To Eat Meats
+Fish,Fishery Products
+Wrap,Re-Wrapping Establishment
+Dairy,Dairy Products
+Egg,Egg Products
+AuditDate,Date of Full Audit
+Outcome,"Outcome of Audit (Good, Generally Satisfactory, Improvement Necessary, Urgent Improvement Necessary)"
+AuditFrequency,"Frequency of Full Audits (18 months, 12 months, 3 months, 2 months) depending on outcome"
+NxtAuditDate,Month Next Full Audit Due (Audit Date + Audit Frequency)
+Q11,"Animal Health & Identification: Only correctly identified animals / carcases with all relevant documentation (passports, FCI, Trained hunters’ declaration) are accepted for slaughter or processing (at Game Handling Establishments)"
+Q12,Animal Health & Identification: FBO takes appropriate action over fitness of animals to be accepted for slaughter based on FCI information and own pre-slaughter checks
+Q13,Animal Health & Identification: Animal health restrictions in disease control area are implemented by slaughterhouse operator
+Q14,"Animal Health & Identification: Slaughterhouse operators transporting poultry/lagomorphs ensure suitable crates/modules are used. All equipment used for collecting/delivery are cleaned, washed and disinfected  immediately after use and if necessary before re-use"
+Q15,Animal Health & Identification: Cleansing and disinfection of red meat livestock vehicles following applicable legislative requirements for the slaughterhouse operator
+Q21,Animal Welfare: suffering during their killing and related operations.
+Q22,"Animal Welfare: Standard operating procedures (SOPs) are developed, implemented and maintained"
+Q23,Animal Welfare: Designated Animal Welfare Officer (AWO) ensuring compliance with welfare regulations.
+Q24,Animal Welfare: Personnel demonstrate appropriate level of competency (including Certificates of Competence).
+Q25,"Animal Welfare: Structures of the building safeguard animal welfare (adverse weather protection, adequate ventilation, lairage conditions)."
+Q26,"Animal Welfare: Adequate unloading facilities (suitable ramps, containing rails, isolation pens)."
+Q27,Animal Welfare: Scheduled arrival / waiting times safeguard animal welfare.
+Q28,"Animal Welfare: Condition and health of animals assessed on intake and during lairaging, prompt action is taken to relieve suffering where this is required."
+Q29,Animal Welfare: Crates/modules are in acceptable condition and handled appropriately when being moved.
+Q210,"Animal Welfare: Lairaging conditions/pen provisions are adequate (bedding, water, food provision - if left overnight)."
+Q211,Animal Welfare: Movement of animals (including the correct procedures and use of instruments to make the animals move).
+Q212,"Animal Welfare: Restraining facilities and equipment are adequately designed, constructed and maintained (including shackle lines and records) "
+Q213,Animal Welfare: Restraining procedures ensure welfare of animals is protected.
+Q214,"Animal Welfare: Stunning equipment is adequately designed, constructed and maintained (including warning devices and maintenance records). "
+Q215,Animal Welfare: Stunning methods ensure quick and effective loss of consciousness and sensibility followed by death (stunning and simple stunning). 
+Q216,Animal Welfare: Provisions for back-up stunning equipment and its use.
+Q217,Animal Welfare: Monitoring checks (including actions following checks).
+Q218,Animal Welfare: Bleeding.
+Q219,Animal Welfare (Religious Slaughter): Restraining equipment and procedures ensure welfare of animals is protected.
+Q220,Animal Welfare (Religious Slaughter): Provisions for back-up stunning equipment and its use.
+Q221,Animal Welfare (Religious Slaughter): Bleeding
+Q222,Animal Welfare (Religious Slaughter): Monitoring checks (including actions following checks).
+Q31,Slaughterhouse / Game Handling Establishment Hygiene: Animals to be slaughtered / wild game are clean and/or FBO has HACCP based procedures in place to avoid contamination of carcasses from dirty animals
+Q32,Slaughterhouse / Game Handling Establishment Hygiene: All handling and processes from slaughtering to despatch are done in a way that avoids the contamination of meat and offal entering the food chain.
+Q33,Slaughterhouse / Game Handling Establishment Hygiene: Any visible contamination removed without delay by trimming or alternative means having an equivalent effect
+Q34,"Slaughterhouse / Game Handling Establishment Hygiene: Where relevant, all edible co-products are handled hygienically and subject to relevant controls (including raw materials intended for further processing)"
+Q35,Slaughterhouse / Game Handling Establishment Hygiene: Correlation and correct presentation of parts of slaughtered red meat animals required to be inspected. Correct presentation of carcasses and accompanying offal of birds for post-mortem inspection
+Q36,"Slaughterhouse / Game Handling Establishment Hygiene: Carcass and offal are chilled, stored and dispatched within the required temperatures and in a manner that avoids cross-contamination"
+Q37,Slaughterhouse / Game Handling Establishment Hygiene: All products have Health Mark or Identification Mark as appropriate
+Q38,"Slaughterhouse / Game Handling Establishment Hygiene: FBO traceability system allows identification of any person from whom they have been supplied with food products, and businesses to which their products have been supplied"
+Q39,Slaughterhouse / Game Handling Establishment Hygiene: All statutory microbiological testing is carried out and appropriate action on receipt of results is being taken.
+Q39i,Slaughterhouse / Game Handling Establishment Hygiene: All statutory Trichinella sampling and testing is carried out and appropriate action on receipt of results is being taken.
+Q310,Cutting Plant / Minced Meat / Meat Preparations / Meat Products Hygiene/ MSM / Cold stores: Legal temperature controls are maintained throughout the process from intake to dispatch for all products and rooms
+Q311,"Cutting Plant / Minced Meat / Meat Preparations / Meat Products Hygiene/ MSM / Cold stores: Controls ensure that risk of cross contamination is minimised, prevented or reduced to acceptable levels during operation and appropriate action taken should contamination occur"
+Q312,"Cutting Plant / Minced Meat / Meat Preparations / Meat Products Hygiene/ MSM / Cold stores: Only permitted raw materials, including water and other ingredients, are used for minced meat, meat preparations, MSM and meat products"
+Q313,Cutting Plant / Minced Meat / Meat Preparations / Meat Products Hygiene/ MSM / Cold stores: All statutory microbiological testing is carried out and appropriate action on receipt of results is being taken.
+Q314,"Cutting Plant / Minced Meat / Meat Preparations / Meat Products Hygiene/ MSM / Cold stores: Wrapping and Packaging materials not to be a source of contamination, stored and handled in such a way that product contamination is avoided"
+Q315,Cutting Plant / Minced Meat / Meat Preparations / Meat Products Hygiene/ MSM / Cold stores: Re-usable wrapping and packaging materials for foodstuffs are easy to clean and disinfect and are clean at point of use
+Q316,Cutting Plant / Minced Meat / Meat Preparations / Meat Products Hygiene/ MSM / Cold stores: Separation of exposed from packaged product
+Q317,Cutting Plant / Minced Meat / Meat Preparations / Meat Products Hygiene/ MSM / Cold stores: Identification marking complies with the legislation
+Q318,Cutting Plant / Minced Meat / Meat Preparations / Meat Products Hygiene/ MSM / Cold stores: Labelling of products that require cooking before eating complies with the legislation 
+Q319,"Cutting Plant / Minced Meat / Meat Preparations / Meat Products Hygiene/ MSM / Cold stores: FBO traceability system allows identification of any person from whom they have been supplied with food products, and businesses to which their products have been supplied"
+Q320,RTE Products: Controls provide assurance that critical limits are achieved - pasteurisation and cooling rates for RTE products
+Q321,RTE Products:  Adequate separation of RTE and non RTE products
+Q322,Fish and Fisheries Products: Legal temperature controls are maintained throughout the process from intake to dispatch for all fishery products
+Q323,"Fish and Fisheries Products: Controls ensure that heading, gutting and filleting are carried out hygienically. "
+Q324,Fish and Fisheries Products: FBO has controls in place to ensure that fishery products susceptible to parasite infestation are subject to the required temperature treatment
+Q325,Fish and Fisheries Products: Cooking and handling of crustaceans (e.g. crabs) carried out hygienically and temperature requirements adhered to.
+Q326,Fish and Fisheries Products: All statutory microbiological testing is carried out and appropriate action on receipt of results is being taken.
+Q327,"Fish and Fisheries Products: Wrapping and Packaging materials not to be a source of contamination, stored and handled in such a way that product contamination is avoided"
+Q328,"Fish and Fisheries Products: FBO has controls in place to ensure that the health standards criteria for fishery products are met (e.g. organoleptic, histamine, TVN, parasite and toxins harmful to human health)"
+Q329,Fish and Fisheries Products: Identification marking complies with the requirements of the regulations
+Q330,Fish and Fisheries Products: Transport
+Q331,"Milk and Dairy Products: Raw milk originates from healthy animals, does not contain residues and complies with the requirements of the Regulations"
+Q332,Milk and Dairy Products: Legal temperature controls for milk are maintained
+Q333,"Milk and Dairy Products: Heat treated milk used for the production of dairy products, complies with the requirements of the Regulations"
+Q334,Milk and Dairy Products: Raw cows' milk used for the manufacturing of dairy products complies with the criteria set in the HACCP plan
+Q335,Milk and Dairy Products: All statutory microbiological testing is carried out and appropriate action on receipt of results is being taken
+Q336,Milk and Dairy Products: Identification marking complies with the requirements of the regulations
+Q337,Eggs and Egg Products: Raw eggs for retail or catering establishments are stored and labelled as required by the Regulations
+Q338,Eggs and Egg Products: Eggs and raw materials for the manufacture of egg products comply with the requirements of the Regulations
+Q339,Eggs and Egg Products: All statutory microbiological testing is carried out and appropriate action on receipt of results is being taken.
+Q340,Eggs and Egg Products: Identification marking complies with the requirements of the regulations
+Q41,Environmental hygiene / Good hygiene practices: Design and layout permit good food hygiene practice and protect against contamination between and during operations
+Q42,"Environmental hygiene / Good hygiene practices: Room size and number sufficient for different processes, species and throughput"
+Q43,Environmental hygiene / Good hygiene practices: FBO has operating procedures in place to ensure there is an adequate supply of potable water.
+Q44,Environmental hygiene / Good hygiene practices: The implementation of the operating procedures is effective and supported by records.
+Q45,"Environmental hygiene / Good hygiene practices: FBO has operating procedures in place to ensure their premises, fittings and equipment are maintained in good repair and condition."
+Q46,Environmental hygiene / Good hygiene practices: The implementation of the operating procedures is effective and supported by records.
+Q47,"Environmental hygiene / Good hygiene practices: FBO has operating procedures in place to ensure their premises, fittings and equipment are kept clean and when necessary disinfected "
+Q48,Environmental hygiene / Good hygiene practices: The implementation of the operating procedures is effective and supported by records.
+Q49,Environmental hygiene / Good hygiene practices: FBO has operating procedures in place to control pests
+Q410,Environmental hygiene / Good hygiene practices: The implementation of the operating procedures is effective and supported by records.
+Q411,"Environmental hygiene / Good hygiene practices: FBO has operating procedures in place to supervise, instruct and/or train staff in food hygiene and work procedures commensurate to their work activity"
+Q412,Environmental hygiene / Good hygiene practices: FBO has operating procedures in place to train staff responsible for the development and maintenance of HACCP - based procedures
+Q413,Environmental hygiene / Good hygiene practices: The implementation of the operating procedures is effective and supported by records.
+Q414,Environmental hygiene / Good hygiene practices: FBO has operating procedures in place to ensure that no person suffering from or being a carrier of a disease likely to be transmitted through food is permitted to handle or enter a food-handling area 
+Q415,Environmental hygiene / Good hygiene practices: The implementation of the operating procedures is effective and supported by records.
+Q51,Food Safety Systems Based on HACCP Principles: Documented HACCP based procedures cover all foods supplied for human consumption. Specific slaughterhouse HACCP based procedure requirements are also included
+Q52,Food Safety Systems Based on HACCP Principles:  HACCP team and description of product(s) provided
+Q53,Food Safety Systems Based on HACCP Principles: Flow diagrams (description of manufacturing process) available
+Q54,Food Safety Systems Based on HACCP Principles:  All hazards that are essential to be controlled by HACCP based procedures have been identified
+Q55,Food Safety Systems Based on HACCP Principles: Correct identification of CCPs or control points at the step or steps at which control is essential for food safety
+Q56,"Food Safety Systems Based on HACCP Principles: Critical limits set up to reflect legal requirements, and/or to separate acceptability from unacceptability "
+Q57,"Food Safety Systems Based on HACCP Principles: Monitoring procedures at CCPs or control points (who, where, when, how often) correctly established"
+Q58,Food Safety Systems Based on HACCP Principles: Monitoring procedures are effective and supported by records
+Q59,"Food Safety Systems Based on HACCP Principles: Corrective action procedures established, for when monitoring indicates that a CCP or control point is not under control"
+Q510,Food Safety Systems Based on HACCP Principles: Corrective actions are effective and supported by records
+Q511,Food Safety Systems Based on HACCP Principles: Validation and verification procedures have been established to regularly demonstrate that the above measures are working effectively
+Q512,"5 Food Safety Systems Based on HACCP Principles: If part of FBOs procedures, arrangements for microbiological sampling and analysis of results are established and implemented"
+Q513,"Food Safety Systems Based on HACCP Principles: Verification procedures, including microbiological sampling, are effective and supported records"
+Q514,Food Safety Systems Based on HACCP Principles: Staff procedures for day to day control of food safety hazards are recorded and kept up to date
+Q515,Food Safety Systems Based on HACCP Principles: Records are established for keeping note of day to day checks and activities for the HACCP based controls 
+Q516,"Food Safety Systems Based on HACCP Principles: Management records are established for keeping note of supervisory checks and corrective actions e.g. diary, check sheets etc.)"
+Q517,Food Safety Systems Based on HACCP Principles: HACCP plans are reviewed and if necessary amended in response to changes to Suppliers / products / operations / equipment / law etc. or following complaints
+Q61,"Handling of Animal By-Products / waste to protect human and animal health: Animal By-Products are removed from food production areas as quickly as possible, avoiding cross contamination"
+Q62,"Handling of Animal By-Products / waste to protect human and animal health: Animal By-Product containers are leak proof, closable, kept in sound condition, cleaned and disinfected as often as necessary. Waste stores are pest proof."
+Q63,"Handling of Animal By-Products / waste to protect human and animal health: Animal By-Products, including SRM, are correctly identified, segregated and categorised"
+Q64,"Handling of Animal By-Products / waste to protect human and animal health: Animal By-Products, including SRM, are correctly stained where necessary"
+Q65,"Handling of Animal By-Products / waste to protect human and animal health: Animal By-Products, including SRM, are dispatched to approved premises with correctly completed commercial documentation"
+Q71,TSE / SRM Controls: FBO ensures meat entering the food chain is free from SRM
+Q72,"TSE / SRM Controls: Animals requiring BSE testing intended for the food chain are tested for BSE/TSE, and processed as per the RMOP"
+Q73,TSE / SRM Controls: Meat from all animals tested for BSE/TSE does not enter the food chain unless tested negative
+Q74,TSE / SRM Controls: Imported carcases meet requirements for the removal of SRM
+Q75,TSE / SRM Controls: Vertebral column from over 30 month cattle is removed and stained
+Additional Info,http://www.food.gov.uk/business-industry/meat/audit

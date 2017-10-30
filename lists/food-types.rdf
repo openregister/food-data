@@ -1,0 +1,97 @@
+<rdf:RDF
+    xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+    xmlns:env-ui="http://environment.data.gov.uk/registry/structure/ui/"
+    xmlns:ldp="http://www.w3.org/ns/ldp#"
+    xmlns:version="http://purl.org/linked-data/version#"
+    xmlns:terms-eu-afe="http://data.food.gov.uk/codes/business/eu-approved-establishments/def/terms/"
+    xmlns:dct="http://purl.org/dc/terms/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ui="http://purl.org/linked-data/registry-ui#"
+    xmlns:terms-sampling="http://data.food.gov.uk/codes/enforcement-monitoring/sampling/def/terms/"
+    xmlns:prov="http://www.w3.org/ns/prov#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns:def-foodtype="http://data.food.gov.uk/codes/foodtype/def/"
+    xmlns:def-sampling="http://data.food.gov.uk/codes/enforcement-monitoring/sampling/def/"
+    xmlns:ssd="http://www.w3.org/ns/sparql-service-description#"
+    xmlns:vann="http://purl.org/vocab/vann/"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:org="http://www.w3.org/ns/org#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:def-eu-afe="http://data.food.gov.uk/codes/business/eu-approved-establishments/def/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:reg="http://purl.org/linked-data/registry#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:void="http://rdfs.org/ns/void#"
+    xmlns:time="http://www.w3.org/2006/time#"
+    xmlns:dgu="http://reference.data.gov.uk/def/reference/"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:odrs="http://schema.theodi.org/odrs#"
+    xmlns:qb="http://purl.org/linked-data/cube#"
+    xmlns:api="http://purl.org/linked-data/api/vocab#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:terms-foodtype="http://data.food.gov.uk/codes/foodtype/def/terms/">
+  <reg:Register rdf:about="http://data.food.gov.uk/codes/foodtype">
+    <rdfs:label>Food Types</rdfs:label>
+    <reg:containedItemClass rdf:resource="http://www.w3.org/ns/ldp#Container"/>
+    <dct:description xml:lang="en">Food Type identifiers, supporting codes and vocabularies based on the EFSA FoodEx2 (https://www.efsa.europa.eu/en/data/data-standardisation) that are being tested in the development of the FSA's code and data standards repository.  These codes may be used within FSA data.</dct:description>
+    <reg:subregister>
+      <ldp:Container rdf:about="http://data.food.gov.uk/codes/foodtype/id">
+        <ui:hierarchyRootProperty rdf:resource="http://www.w3.org/2004/02/skos/core#topConceptOf"/>
+        <reg:containedItemClass rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <reg:inverseMembershipPredicate rdf:resource="http://www.w3.org/2004/02/skos/core#inScheme"/>
+        <dct:description xml:lang="en">Food type Identifiers</dct:description>
+        <rdf:type rdf:resource="http://purl.org/linked-data/registry#Register"/>
+        <ui:hierarchyChildProperty rdf:resource="http://www.w3.org/2004/02/skos/core#narrower"/>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+        >2</owl:versionInfo>
+        <rdfs:label xml:lang="en">Food type Identifiers</rdfs:label>
+        <reg:notation>id</reg:notation>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+        >2017-08-18T10:24:32.326Z</dct:modified>
+      </ldp:Container>
+    </reg:subregister>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+    >4</owl:versionInfo>
+    <rdf:type rdf:resource="http://www.w3.org/ns/ldp#Container"/>
+    <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+    >2017-08-18T10:23:12.249Z</dct:modified>
+    <reg:subregister>
+      <reg:Register rdf:about="http://data.food.gov.uk/codes/foodtype/hierarchy">
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+        >3</owl:versionInfo>
+        <reg:subregister rdf:resource="http://data.food.gov.uk/codes/foodtype/hierarchy/main"/>
+        <reg:subregister rdf:resource="http://data.food.gov.uk/codes/foodtype/hierarchy/facet"/>
+        <rdfs:label>Food type hierarchies</rdfs:label>
+        <reg:containedItemClass rdf:resource="http://www.w3.org/ns/ldp#Container"/>
+        <reg:containedItemClass rdf:resource="http://purl.org/linked-data/registry#Register"/>
+        <reg:notation>hierarchy</reg:notation>
+        <dct:description>Food type main and facet hierarchies.</dct:description>
+        <rdf:type rdf:resource="http://www.w3.org/ns/ldp#Container"/>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+        >2017-08-18T10:22:02.678Z</dct:modified>
+      </reg:Register>
+    </reg:subregister>
+    <reg:containedItemClass rdf:resource="http://purl.org/linked-data/registry#Register"/>
+    <rdfs:member rdf:resource="http://data.food.gov.uk/codes/foodtype/id"/>
+    <rdfs:member rdf:resource="http://data.food.gov.uk/codes/foodtype/hierarchy"/>
+    <reg:notation>foodtype</reg:notation>
+    <rdfs:member>
+      <reg:Register rdf:about="http://data.food.gov.uk/codes/foodtype/def">
+        <rdfs:label>Definitions</rdfs:label>
+        <reg:subregister rdf:resource="http://data.food.gov.uk/codes/foodtype/def/terms"/>
+        <rdf:type rdf:resource="http://www.w3.org/ns/ldp#Container"/>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"
+        >5</owl:versionInfo>
+        <reg:notation>def</reg:notation>
+        <reg:subregister rdf:resource="http://data.food.gov.uk/codes/foodtype/def/attribute"/>
+        <reg:subregister rdf:resource="http://data.food.gov.uk/codes/foodtype/def/corex"/>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+        >2017-08-18T10:20:28.336Z</dct:modified>
+        <reg:subregister rdf:resource="http://data.food.gov.uk/codes/foodtype/def/state"/>
+        <dct:description>Food type supporting vocabularies.</dct:description>
+        <reg:subregister rdf:resource="http://data.food.gov.uk/codes/foodtype/def/applicability"/>
+      </reg:Register>
+    </rdfs:member>
+    <reg:subregister rdf:resource="http://data.food.gov.uk/codes/foodtype/def"/>
+  </reg:Register>
+</rdf:RDF>
