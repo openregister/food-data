@@ -38,12 +38,12 @@ count(establishments, Country)
 
 # Potential registers:
 # * approved-meat-establishments
-# * meat-establishment-activity
+# * meat-establishment-type (activity)
 # * meat-establishment-operation
 # * meat-establishment-assessment
 # * meat-establishment-outcome
 # * meat-establishment-criterion
-# Activity is cardinality='n'
+# type is cardinality='n'
 
 # * approved-meat-establishments
 #   * approved-meat-establishment
@@ -58,8 +58,8 @@ count(establishments, Country)
 #   * start-date
 #   * end-date
 
-# * meat-establishment-activity
-#   * meat-establishment-activity
+# * meat-establishment-type
+#   * meat-establishment-type
 #   * start-date
 #   * end-date
 
@@ -87,12 +87,12 @@ count(establishments, Country)
 #   * start-date
 #   * end-date
 
-`meat-establishment-activity` <-
-  tibble(`meat-establishment-activity` = 1:3,
+`meat-establishment-type` <-
+  tibble(`meat-establishment-type` = 1:3,
          name = c("Cutting Plant", "Cold Store", "Slaughterhouse"),
          `start-date` = NA,
          `end-date` = NA) %>%
-  write_tsv(here("data", "meat-establishment-activity.tsv"), na = "") %>%
+  write_tsv(here("data", "meat-establishment-type.tsv"), na = "") %>%
   mutate(Activity = c("CP", "CS", "SH")) # for joining
 
 `meat-establishment-outcome` <-
@@ -137,7 +137,8 @@ write_tsv(select(`meat-establishment-operation`, -acronym),
           here("data", "meat-establishment-operation.tsv"),
           na = "")
 
-establishments %>%
+`approved-meat-establishment` <-
+  establishments %>%
   select(`approved-meat-establishment` = ApprovalNumber,
          `company` = TradingName,
          `local-authority` = County,
@@ -158,10 +159,23 @@ establishments %>%
   left_join(select(`meat-establishment-outcome`, `meat-establishment-outcome`, name),
             by = c("Outcome" = "name")) %>%
   select(-Outcome) %>%
-  left_join(select(`meat-establishment-activity`, `meat-establishment-activity`, Activity),
+  left_join(select(`meat-establishment-type`, `meat-establishment-type`, Activity),
             by = c("Activity")) %>%
   select(-Activity) %>%
   left_join(select(`meat-establishment-operation`, `meat-establishment-operation`, acronym),
             by = c("operation" = "acronym")) %>%
   select(-operation) %>%
+  mutate(`start-date` = NA,
+         `end-date` = NA) %>%
+  select(`approved-meat-establishment`,
+         `company`,
+         `meat-establishment-type`,
+         `meat-establishment-operation`,
+         `meat-establishment-outcome`,
+         `local-authority`,
+         `meat-establishment-audit-date`,
+         `meat-establishment-audit-frequency`,
+         `meat-establishment-next-audit-due-date`,
+         `start-date`,
+         `end-date`) %>%
   write_tsv(here("data", "approved-meat-establishment.tsv"), na = "")
