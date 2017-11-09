@@ -1,3 +1,8 @@
+# This explores the data in the csv download
+# https://www.food.gov.uk/business-industry/meat/audit
+
+# There is an RSF version of apparently the same thing.
+
 library(tidyverse)
 library(here)
 
