@@ -183,6 +183,7 @@ write_tsv(select(`meat-establishment-operation`, -acronym),
          `meat-establishment-next-audit-due-date`,
          `start-date`,
          `end-date`) %>%
+  distinct() %>%
   mutate(`local-authority` = NA) %>%
   write_tsv(here("data", "approved-meat-establishment.tsv"), na = "")
 
