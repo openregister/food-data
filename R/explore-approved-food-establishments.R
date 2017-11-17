@@ -45,8 +45,9 @@ facilities <-
          # http://data.food.gov.uk/codes/business/eu-approved-establishments/categories/_A-I
          # http://data.food.gov.uk/codes/business/eu-approved-establishments/categories/_B-I
          section = paste(part, section, sep = "-"),
-         facility = str_split(facilities, ", "),
-         facility = str_extract(facility, "[[:alnum:]]+(?= )")) %>%
+         facility = str_split(facilities, ", ")) %>%
+  unnest(facility) %>%
+  mutate(facility = str_extract(facility, "[[:alnum:]]+(?= )")) %>%
   select(-category, -facilities)
 
 # Explore combinations of Part and Section
@@ -83,7 +84,6 @@ facilities_nested <-
   group_by(AppNo) %>%
   summarise(facility = list(facility))
 
-
 only_facility <- anti_join(facilities_nested, species_nested, by = "AppNo")
 only_species <- anti_join(species_nested, facilities_nested, by = "AppNo")
 both <- inner_join(species_nested, facilities_nested, by = "AppNo")
@@ -92,12 +92,12 @@ both <- inner_join(species_nested, facilities_nested, by = "AppNo")
 
 # What facilities never appear against species?  A few.
 facility_without_species <-
-  full_join(facilities, species) %>%
+  full_join(facilities, species, by = "AppNo") %>%
   filter(is.na(species)) %>%
   count(facility, section, sort = TRUE)
 
 facility_with_species <-
-  inner_join(facilities, species) %>%
+  inner_join(facilities, species, by = "AppNo") %>%
   count(facility, section, sort = TRUE)
 
 anti_join(facility_without_species, facility_with_species, by = c("facility", "section"))
@@ -111,4 +111,3 @@ full_join(facilities, species) %>%
   mutate(dummy = "x") %>%
   spread(species, dummy) %>%
   print(n = Inf)
-
