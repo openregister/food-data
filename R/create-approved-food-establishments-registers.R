@@ -1,6 +1,3 @@
-# Explore the 'other' list of meat establishments, which is in fact all food
-# establishments.
-
 library(tidyverse)
 library(readxl)
 library(here)
@@ -8,26 +5,23 @@ library(stringr)
 
 source_data <- read_csv(here("lists", "approved-food-establishments.csv"))
 
-# List the distinct values in each column beyond Postcode
-source_data %>%
-  select(-1:-8, -GeographicLocalAuthority, -X, -Y) %>%
-  map(unique)
-
-# * Species: comma-delimited concatenation of all subsequent columns
+# * Species: comma-delimited concatenation of all subsequent columns, only
+#   applies to SH (slaughterhouse) under Part A Sections I and II.
 # * AuctionHall: this and subsequent columns are 'yes' if an auction hall is
 #   approved in any category, but it could be in more than one, e.g. Potts
 #   (Bakers) Ltd has a packaging plant approved in two categories
-# * Remarks: is it a thing?
+# * Remarks: not a thing
 # * `PartA(AllSections)`: comma-delimited concatenation of previous columns, even
 #   when those columns are themselves comma-delimited.
 # * `PartB(AllSections)`: only has sprouts in it
 #   http://data.food.gov.uk/codes/business/eu-approved-establishments/categories/_B
 # * CompetentAuthority: It's per AppNo, but multiple approvals per AppNo, so a
 #   separate register?
-# * Nothing under PartASectionXVIHoney
-# * Nothing under Reefervessel
-# * Nothing under Tannery
-# * AddressWitheld what's the difference between "Yes" and blank?
+# * Nothing under PartASectionXVIHoney: expected
+# * Nothing under Reefervessel: expected
+# * Nothing under Tannery: expected
+# * AddressWitheld: 'blank' and 'No' are equivalent
+# * DH 003 and MD 018 shouldn't be in there.
 
 # * What's the relationship between species, and parts and sections?
 
@@ -50,16 +44,6 @@ facilities <-
   mutate(facility = str_extract(facility, "[[:alnum:]]+(?= )")) %>%
   select(-category, -facilities)
 
-# Explore combinations of Part and Section
-facilities %>%
-  count(part, section)
-
-# Check that all the extracted parts and sections make sense (no NAs, no empty
-# strings)
-facilities %>%
-  select(part, section, facility) %>%
-  map(~ sort(table(.x, useNA = "always")))
-
 # Melt into one row per AppNo and species
 species <-
   source_data %>%
@@ -68,8 +52,17 @@ species <-
   filter(!is.na(value)) %>%
   select(-value) # all values are "Yes"
 
-# Check that species and value make sense (no NAs, no empty strings)
-count(species, species, sort = TRUE)
+# Create a species register.  This will need manual tweaking to rename
+# "WildBirds" to "Wild Birds" etc.
+species %>%
+  distinct(species) %>%
+  transmute(name = species,
+            `approved-food-species` = row_number() + 10L,
+            `start-date` = NA,
+            `end-date` = NA) %>%
+  select(`approved-food-species`, everything()) %>%
+  write_tsv(here("data", "approved-food-species.tsv")) %>%
+  print(n = Inf)
 
 # Combine facilities and species into a one-row-per-approval form, with
 # cardinality:n columns for facility and species.
@@ -87,8 +80,6 @@ facilities_nested <-
 only_facility <- anti_join(facilities_nested, species_nested, by = "AppNo")
 only_species <- anti_join(species_nested, facilities_nested, by = "AppNo")
 both <- inner_join(species_nested, facilities_nested, by = "AppNo")
-
-# Uh-oh, MD 018 only has species approval, but no facilities.
 
 # What facilities never appear against species?  A few.
 facility_without_species <-
@@ -111,27 +102,3 @@ full_join(facilities, species) %>%
   mutate(dummy = "x") %>%
   spread(species, dummy) %>%
   print(n = Inf)
-
-# Check that species only exist in relation to slaughterhouses (SH)
-# Not true, but FSA says
-# > The “Species” field is only relevant to those establishments who are
-# > approved for slaughter activities (ie SH recorded under PartASectionI or
-# > PartASectionII) . Data in this field for any establishment which is not
-# > approved for slaughter activities should be ignored.
-slaughterhouse <-
-  facilities %>%
-  filter(facility == "SH") %>%
-  distinct(AppNo)
-
-anti_join(species, slaughterhouse, by = "AppNo") %>%
-  inner_join(facilities, by = "AppNo") %>%
-  distinct(AppNo, facility) %>%
-  count(AppNo) %>%
-  filter(n == 1) %>%
-  inner_join(facilities, by = "AppNo") %>%
-  count(facility)
-
-# Check that slaughterhouses only appear in Part A sections I and II.  True.
-facilities %>%
-  filter(facility == "SH") %>%
-  count(section)
