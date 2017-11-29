@@ -4,23 +4,23 @@ allergen	name	allergen-group	start-date	end-date
 3	Egg			
 4	Fish			
 5	Gluten			
-6	Barley	4		
-7	Oats	4		
-8	Rye	4		
-9	Wheat	4		
+6	Barley	5		
+7	Oats	5		
+8	Rye	5		
+9	Wheat	5		
 10	Lupin			
 11	Milk			
 12	Molluscs			
 13	Mustard			
 14	Nuts			
-15	Almond	13		
-16	Brazil nut	13		
-17	Cashew	13		
-18	Hazelnut	13		
-19	Macadamia nut	13		
-20	Pecan nut	13		
-21	Pistachio nut	13		
-22	Walnut	13		
+15	Almond	14		
+16	Brazil nut	14		
+17	Cashew	14		
+18	Hazelnut	14		
+19	Macadamia nut	14		
+20	Pecan nut	14		
+21	Pistachio nut	14		
+22	Walnut	14		
 23	Peanuts			
 24	Sesame			
 25	Soya			
