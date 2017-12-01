@@ -44,25 +44,104 @@ facilities <-
   mutate(facility = str_extract(facility, "[[:alnum:]]+(?= )")) %>%
   select(-category, -facilities)
 
-# Melt into one row per AppNo and species
+facilities %>%
+  count(facility, sort = TRUE)
+
+activities <-
+  source_data %>%
+  select(AppNo, AllActivities) %>%
+  mutate(AllActivities = str_split(AllActivities, pattern = fixed(", "))) %>%
+  unnest() %>%
+  filter(!is.na(AllActivities)) %>%
+  mutate(AllActivities = str_trim(AllActivities))
+
+# The activities are in categories that can look like species but aren't to be
+# confused with them.
+activities %>%
+  count(AllActivities, sort = TRUE) %>%
+  print(n = Inf)
+
+# An AppNo can have a Slaughterhouse in two different categories, which makes it
+# difficult to tell which species applies to which category of slaughterhouse.
+activities %>%
+  distinct(AppNo, AllActivities) %>%
+  mutate(AllActivities = str_replace(AllActivities, " \\(.*$", "")) %>%
+  count(AppNo, AllActivities, sort = TRUE)  %>%
+  filter(AllActivities == "Slaughterhouse")
+
+# The AllActivities column exactly matches the individiual Activities columns
+# (in the 'facilities' variable), whether or not you ignore the categories.
+activities %>%
+  mutate(AllActivities = str_replace(AllActivities, " \\(.*$", "")) %>%
+  count(AllActivities, sort = TRUE) %>%
+  print(n = Inf)
+facilities %>%
+  count(section, facility, sort = TRUE) %>%
+  print(n = Inf)
+
+# # This turned out not to be the best because the 'Species' column includes
+# # species that aren't represented by any of the other columns.  For example,
+# # "Land mammals other than domestic ungulates".
+
+# # Melt into one row per AppNo and species
+# species <-
+#   source_data %>%
+#   select(AppNo, Poultry:WildLandMammalsOtherThanWildUngulatesAndWildLagomorphs) %>%
+#   gather(species, value, -AppNo) %>%
+#   filter(!is.na(value)) %>%
+#   select(-value) # all values are "Yes"
+
+# # Create a species register.  This will need manual tweaking to rename
+# # "WildBirds" to "Wild Birds" etc.
+# species %>%
+#   distinct(species) %>%
+#   transmute(name = species,
+#             `approved-food-species` = row_number() + 10L,
+#             `start-date` = NA,
+#             `end-date` = NA) %>%
+#   select(`approved-food-species`, everything()) %>%
+#   write_tsv(here("data", "approved-food-species.tsv")) %>%
+#   print(n = Inf)
+
 species <-
   source_data %>%
-  select(AppNo, Poultry:WildLandMammalsOtherThanWildUngulatesAndWildLagomorphs) %>%
-  gather(species, value, -AppNo) %>%
-  filter(!is.na(value)) %>%
-  select(-value) # all values are "Yes"
+  select(AppNo, Species) %>%
+  mutate(Species = str_split(Species, pattern = fixed(", "))) %>%
+  unnest() %>%
+  filter(!is.na(Species)) %>%
+  mutate(Species = str_trim(Species))
 
-# Create a species register.  This will need manual tweaking to rename
-# "WildBirds" to "Wild Birds" etc.
+# Create a species register
 species %>%
-  distinct(species) %>%
-  transmute(name = species,
-            `approved-food-species` = row_number() + 10L,
-            `start-date` = NA,
-            `end-date` = NA) %>%
-  select(`approved-food-species`, everything()) %>%
-  write_tsv(here("data", "approved-food-species.tsv")) %>%
-  print(n = Inf)
+  distinct(Species) %>%
+  rename(`name` = Species) %>%
+  mutate(`approved-food-species` = row_number() + 10L,
+         `start-date` = NA,
+         `end-date` = NA) %>%
+  select(`approved-food-species`, name, `start-date`, `end-date`) %>%
+  write_tsv(here("data", "approved-food-species.tsv"))
+
+# Find out which species map to which categories of slaughterhouse, by examining
+# approvals that only have one species
+one_species <-
+  species %>%
+  nest(-AppNo) %>%
+  mutate(n = map_int(data, nrow)) %>%
+  filter(n == 1) %>%
+  select(-n) %>%
+  unnest()
+slaughterhouse <-
+  facilities %>%
+  filter(facility == "SH")
+
+# Bother, Ratite and Farmed Land Mammals appear in more than one section each
+inner_join(slaughterhouse, one_species, by = "AppNo") %>%
+  count(Species, section, sort = TRUE)
+inner_join(slaughterhouse, one_species, by = "AppNo") %>%
+  filter(Species == "Ratite")
+inner_join(slaughterhouse, one_species, by = "AppNo") %>%
+  filter(Species == "Farmed Land Mammals other than Domestic Ungulates")
+
 
 # Combine facilities and species into a one-row-per-approval form, with
 # cardinality:n columns for facility and species.

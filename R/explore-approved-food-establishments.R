@@ -31,6 +31,17 @@ source_data %>%
 
 # * What's the relationship between species, and parts and sections?
 
+# Check that the AppNos are unique.  They're not!
+count(source_data, AppNo, sort = TRUE)
+# Ask the custodian
+# AppNo          n
+# CQ 505         2
+# CQ 514         2
+# CQ 528         2
+# CQ 544         2
+# TH 017.022     2
+
+
 # Melt into one row per AppNo, Part and Section
 facilities <-
   source_data %>%
