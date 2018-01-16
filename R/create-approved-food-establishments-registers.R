@@ -81,7 +81,9 @@ facilities %>%
 
 # # This turned out not to be the best because the 'Species' column includes
 # # species that aren't represented by any of the other columns.  For example,
-# # "Land mammals other than domestic ungulates".
+# # "Land mammals other than domestic ungulates".  The species in the 'Species'
+# # column are actually 'categories'
+# # http://data.food.gov.uk/codes/business/eu-approved-establishments/_categories
 
 # # Melt into one row per AppNo and species
 # species <-
@@ -112,14 +114,15 @@ species <-
   mutate(Species = str_trim(Species))
 
 # Create a species register
-species %>%
+species_register <-
+  species %>%
   distinct(Species) %>%
   rename(`name` = Species) %>%
-  mutate(`approved-food-species` = row_number() + 10L,
+  mutate(`food-species` = row_number() + 10L,
          `start-date` = NA,
          `end-date` = NA) %>%
-  select(`approved-food-species`, name, `start-date`, `end-date`) %>%
-  write_tsv(here("data", "approved-food-species.tsv"))
+  select(`food-species`, name, `start-date`, `end-date`) %>%
+  write_tsv(here("data", "food-species.tsv"))
 
 # Find out which species map to which categories of slaughterhouse, by examining
 # approvals that only have one species
@@ -142,6 +145,21 @@ inner_join(slaughterhouse, one_species, by = "AppNo") %>%
 inner_join(slaughterhouse, one_species, by = "AppNo") %>%
   filter(Species == "Farmed Land Mammals other than Domestic Ungulates")
 
+# All combinations of section, facility and (for slaughterhouses) species,
+# omitting the combination of slaughterhouse (SH) but no species.
+left_join(facilities, species, by = "AppNo") %>%
+  mutate(Species = if_else(facility == "SH", Species, NA_character_)) %>%
+  distinct(section, facility, Species) %>%
+  filter(!(facility == "SH" & is.na(Species))) %>%
+  rename(`food-section` = section,
+         `food-activity` = facility) %>%
+  left_join(select(species_register, `food-species`, name), by = c(Species = "name")) %>%
+  select(-Species) %>%
+  mutate(`food-category` = paste(`food-section`, `food-activity`, `food-species`, sep = ":")) %>%
+  select(`food-category`, everything()) %>%
+  arrange(`food-category`) %>%
+  print(n = Inf) %>%
+  write_tsv(here("data", "food-category.tsv"))
 
 # Combine facilities and species into a one-row-per-approval form, with
 # cardinality:n columns for facility and species.
@@ -158,12 +176,12 @@ facilities_nested <-
 
 only_facility <- anti_join(facilities_nested, species_nested, by = "AppNo")
 only_species <- anti_join(species_nested, facilities_nested, by = "AppNo")
-both <- inner_join(species_nested, facilities_nested, by = "AppNo")
+bleftoth <- inner_join(species_nested, facilities_nested, by = "AppNo")
 
 # What facilities never appear against species?  A few.
 facility_without_species <-
   full_join(facilities, species, by = "AppNo") %>%
-  filter(is.na(species)) %>%
+  filter(is.na(Species)) %>%
   count(facility, section, sort = TRUE)
 
 facility_with_species <-
@@ -177,7 +195,20 @@ anti_join(facility_with_species, facility_without_species, by = c("facility", "s
 
 # Crosstab facilities by species to see what combinations exist
 full_join(facilities, species) %>%
-  distinct(facility, section, species) %>%
+  distinct(facility, section, Species) %>%
   mutate(dummy = "x") %>%
-  spread(species, dummy) %>%
+  spread(Species, dummy) %>%
   print(n = Inf)
+
+# Some Slaughterhouses never appear against a species
+slaughterhouse_without_species <-
+  full_join(facilities, species, by = "AppNo") %>%
+  filter(is.na(Species)) %>%
+  filter(facility == "SH")
+slaughterhouse_without_species
+# # A tibble: 3 x 5
+#   AppNo part  section facility Species
+#   <chr> <chr> <chr>   <chr>    <chr>
+# 1 2660  A     A-I     SH       <NA>
+# 2 2669  A     A-II    SH       <NA>
+# 3 5388  A     A-II    SH       <NA>
