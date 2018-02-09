@@ -7,3 +7,13 @@
 * [banned or restricted imports](https://www.food.gov.uk/business-industry/imports#toc-3)
 
 Also see previous work [here](https://github.com/openregister-attic/food-data).
+
+## Licence
+
+Unless stated otherwise, the codebase is released under [the MIT licence](./LICENSE).
+
+The data is [© Crown
+copyright](http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/)
+and available under the terms of the [Open Government
+3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)
+licence.
